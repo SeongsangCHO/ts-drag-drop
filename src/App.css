@@ -24,3 +24,9 @@ li.li-item {
 li.li-item.grabbing {
   background-color: aqua;
 }
+
+li.li-item.grabbing + li {
+}
+
+li.li-item.inter {
+}

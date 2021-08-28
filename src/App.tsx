@@ -48,6 +48,7 @@ function App() {
     clickElId.current = interSectElId.current = getInterSectionElementIndex(
       Number(id)
     );
+    e.dataTransfer.effectAllowed = "move";
     e.target.classList.add("grabbing");
     console.log(clickElId.current, "잡은 id");
   };
@@ -67,6 +68,8 @@ function App() {
     interSectElId.current = getInterSectionElementIndex(Number(id));
     console.log(interSectElId.current, "겹침 id");
     //0,1까지/ 2번째 넣고, 3번부터 끝까지
+    e.target.classList.add("inter");
+
     // console.log(e.target, "onDragEnter - 요소 겹칠 때", interSectElId);
   };
   const onDrop = (e: any) => {
@@ -75,6 +78,10 @@ function App() {
   };
   const onDragOver = (e: any) => {
     e.preventDefault();
+  };
+  const onDragLeave = (e: any) => {
+    e.target.classList.remove("inter");
+    console.log(e.target.dataset.id);
   };
   return (
     <div className="App">
@@ -86,6 +93,7 @@ function App() {
                 draggable
                 data-id={item.id}
                 onDrop={onDrop}
+                onDragLeave={onDragLeave}
                 onDragEnter={onDragEnter}
                 onDragEnd={onDragEnd}
                 onDragOver={onDragOver}
